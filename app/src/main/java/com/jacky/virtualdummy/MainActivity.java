@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements ModelLoader.Model
     private static final double MIN_OPENGL_VERSION = 3.0; //using emulator
 
     private WritingArFragment arFragment;
-    private ModelRenderable ironRenderable;
+    private ModelRenderable sceneRenderable;
     private ModelLoader modelLoader; //avoid leaking the activity's context
     private VideoRecorder videoRecorder; // enables videos to be recorded. Gives functionality
     private FloatingActionButton recordButton; //UI
@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity implements ModelLoader.Model
         arFragment = (WritingArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment); //ARFRAGMENT HOLDS PERMISSION TO RUN ARCORE FEATURES
 
         modelLoader = new ModelLoader(this);
-        modelLoader.loadModel(this, R.raw.iron);
+        modelLoader.loadModel(this, R.raw.scene);
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (ironRenderable == null) {
+                    if (sceneRenderable == null) {
                         return;
                     }
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements ModelLoader.Model
 
                     TransformableNode iron = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
                     iron.setParent(anchorNode);
-                    iron.setRenderable(ironRenderable);
+                    iron.setRenderable(sceneRenderable);
                     iron.select();
                 });
 
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements ModelLoader.Model
 
     @Override
     public void setRenderable(ModelRenderable modelRenderable) {
-        ironRenderable = modelRenderable;
+        sceneRenderable = modelRenderable;
     }
 
     @Override

@@ -52,3 +52,9 @@ sceneform.asset('sampledata/models/iron.obj',
         'default',
         'sampledata/models/iron.sfa',
         'src/main/res/raw/iron')
+
+
+sceneform.asset('sampledata/models/scene.gltf',
+        'default',
+        'sampledata/models/scene.sfa',
+        'src/main/res/raw/scene')
