@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "316307127306",
+    "firebase_url": "https://kwetudesign-bc19b.firebaseio.com",
+    "project_id": "kwetudesign-bc19b",
+    "storage_bucket": "kwetudesign-bc19b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316307127306:android:7bd35562971345d6",
+        "android_client_info": {
+          "package_name": "com.jacky.virtualdummy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316307127306-r29nh28bnq6s3r3cahrsjfcqnd986i64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHGVxP29bHkL8xRwLxMqYyc2GBUeyalTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316307127306-r29nh28bnq6s3r3cahrsjfcqnd986i64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

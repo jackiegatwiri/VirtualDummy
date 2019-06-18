@@ -5,11 +5,10 @@ import android.app.ActivityManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.media.CamcorderProfile;
-import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,40 +21,29 @@ import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.rendering.ModelRenderable;
-import com.google.ar.sceneform.ux.ArFragment;
-import com.google.ar.sceneform.ux.BaseArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
-
-import java.util.function.Consumer;
 
 public class MainActivity extends AppCompatActivity implements ModelLoader.ModelLoaderCallbacks {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final double MIN_OPENGL_VERSION = 3.0;
+    private static final double MIN_OPENGL_VERSION = 3.0; //using emulator
 
     private WritingArFragment arFragment;
     private ModelRenderable ironRenderable;
-    // Model loader class to avoid leaking the activity context.
-    private ModelLoader modelLoader;
-
-    // VideoRecorder encapsulates all the video recording functionality.
-    private VideoRecorder videoRecorder;
-
-    // The UI to record.
-    private FloatingActionButton recordButton;
+    private ModelLoader modelLoader; //avoid leaking the activity's context
+    private VideoRecorder videoRecorder; // enables videos to be recorded. Gives functionality
+    private FloatingActionButton recordButton; //UI
 
     @Override
     @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
-    // CompletableFuture requires api level 24
-    // FutureReturnValueIgnored is not valid
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!checkIsSupportedDeviceOrFinish(this)) {
+        if (!checkIsSupportedDeviceOrFinish(this)) { //CHECK API LEVEL OF ANDROID DEVICE
             return;
         }
 
         setContentView(R.layout.activity_main);
-        arFragment = (WritingArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
+        arFragment = (WritingArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment); //ARFRAGMENT HOLDS PERMISSION TO RUN ARCORE FEATURES
 
         modelLoader = new ModelLoader(this);
         modelLoader.loadModel(this, R.raw.iron);
@@ -66,13 +54,12 @@ public class MainActivity extends AppCompatActivity implements ModelLoader.Model
                         return;
                     }
 
-                    // Create the Anchor.
+
                     Anchor anchor = hitResult.createAnchor();
                     AnchorNode anchorNode = new AnchorNode(anchor);
                     anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-                    // Create the transformable andy and add it to the anchor.
-                    TransformableNode iron = new TransformableNode(arFragment.getTransformationSystem());
+                    TransformableNode iron = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
                     iron.setParent(anchorNode);
                     iron.setRenderable(ironRenderable);
                     iron.select();
@@ -98,9 +85,7 @@ public class MainActivity extends AppCompatActivity implements ModelLoader.Model
         super.onPause();
     }
 
-    /*
-     * Used as a handler for onClick, so the signature must match onClickListener.
-     */
+
     private void toggleRecording(View unusedView) {
         if (!arFragment.hasWritePermission()) {
             Log.e(TAG, "Video recording requires the WRITE_EXTERNAL_STORAGE permission");
@@ -130,14 +115,7 @@ public class MainActivity extends AppCompatActivity implements ModelLoader.Model
         }
     }
 
-    /**
-     * Returns false and displays an error message if Sceneform can not run, true if Sceneform can run
-     * on this device.
-     *
-     * <p>Sceneform requires Android N on the device as well as OpenGL 3.0 capabilities.
-     *
-     * <p>Finishes the activity if Sceneform can not run
-     */
+
     public static boolean checkIsSupportedDeviceOrFinish(final Activity activity) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             Log.e(TAG, "Sceneform requires Android N or later");
