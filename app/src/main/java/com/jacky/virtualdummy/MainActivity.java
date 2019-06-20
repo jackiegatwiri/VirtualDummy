@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.graphics.Color;
 import android.media.CamcorderProfile;
 import android.net.Uri;
 import android.os.Build;
@@ -22,7 +23,6 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
-import com.google.ar.sceneform.rendering.Color;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton recordButton; //UI
     private Uri selectedObject;
 
+
     @BindView(R.id.couch)
     ImageView couch;
     @BindView(R.id.set)
@@ -51,20 +52,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView sofa_01;
 
     View arrayView[];
-    int[] selected = {1, 2, 3, 4}; //default couch
+    int selected = 1; //default couch
 
 
 
     @Override
-    @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         arFragment = (WritingArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment); //ARFRAGMENT HOLDS PERMISSION TO RUN ARCORE FEATURES
 
-//        setArrayView();
-//        setClickListener();
+        setArrayView();
+       setClickListener();
         setupModel();
 
 
@@ -73,42 +73,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         arFragment.setOnTapArPlaneListener(new BaseArFragment.OnTapArPlaneListener() {
             @Override
             public void onTapPlane(HitResult hitResult, Plane plane, MotionEvent motionEvent) {
-            for(int i =0; i<selected.length; i++) {
-                if (selected[i] == 2) {
-                    Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-                    createModel(anchorNode, selected[i]);
-                }
-                else if (selected[i] == 1) {
-                    Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-                    createModel(anchorNode, selected[i]);
-                }
-                else if (selected[i] == 3) {
-                    Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-                    createModel(anchorNode, selected[i]);
-                }
-                else if (selected[i] == 4) {
-                    Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-                    createModel(anchorNode, selected[i]);
-                }
-//                else if (selected[i] == 5) {
-//                    Anchor anchor = hitResult.createAnchor();
-//                    AnchorNode anchorNode = new AnchorNode(anchor);
-//                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-//                    createModel(anchorNode, selected[i]);
-//                }
-            }
 
-
-
-            }
+                    Anchor anchor = hitResult.createAnchor();
+                    AnchorNode anchorNode = new AnchorNode(anchor);
+                    anchorNode.setParent(arFragment.getArSceneView().getScene());
+                    createModel(anchorNode, selected);
+                }
         });
 
         // Initialize the VideoRecorder.
@@ -128,52 +98,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setupModel() {
 
-        ModelRenderable.builder().setSource(this, R.raw.couch) //renders the sfb
+        ModelRenderable.builder()
+                .setSource(this, R.raw.couch)
                 .build()
                 .thenAccept(renderable -> couchRenderable = renderable)
-                .exceptionally(
-                        throwable -> {
-                            Toast.makeText(this, "Unable to load sofa model", Toast.LENGTH_SHORT).show();
-                            return null;
-                        }
-        );
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load chair renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
 
-        ModelRenderable.builder().setSource(this, R.raw.modell)
+        ModelRenderable.builder()
+                .setSource(this, R.raw.modell)
+                .build()
+                .thenAccept(renderable -> lampRenderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load lamp renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+
+        ModelRenderable.builder()
+                .setSource(this, R.raw.sofa_01)
                 .build()
                 .thenAccept(renderable -> setRenderable = renderable)
-                .exceptionally(
-                throwable -> {
-                    Toast.makeText(this, "Unable to load chair model", Toast.LENGTH_SHORT).show();
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
                     return null;
-                }
-        );
-
-        ModelRenderable.builder().setSource(this, R.raw.sofa_01).build()
-                .thenAccept(renderable -> set1Renderable = renderable).exceptionally(
-                throwable -> {
-                    Toast.makeText(this, "Unable to load chair model", Toast.LENGTH_SHORT).show();
-                    return null;
-                }
-        );
-
-                ModelRenderable.builder().setSource(this, R.raw.lamp).build()
-                        .thenAccept(renderable -> lampRenderable = renderable).exceptionally(
-                        throwable -> {
-                            Toast.makeText(this, "Unable to load chair model", Toast.LENGTH_SHORT).show();
-                            return null;
-                        }
-                );
-
-//                        ModelRenderable.builder().setSource(this, R.raw.lamppost).build()
-//                                .thenAccept(renderable -> lamp1Renderable = renderable).exceptionally(
-//                                throwable -> {
-//                                    Toast.makeText(this, "Unable to load chair model", Toast.LENGTH_SHORT).show();
-//                                    return null;
-//                                }
-//        );
+                });
 
 
     }
+
 
     private void createModel(AnchorNode anchorNode, int selected) {
         if ( selected == 1){
@@ -182,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             couch.setParent(anchorNode);
             couch.setRenderable(couchRenderable);
             couch.select();
+
         }
 
         else if ( selected == 2)
@@ -202,35 +166,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-        else if ( selected == 4)
-        {
-            TransformableNode lamp = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
-            lamp.setParent(anchorNode);
-            lamp.setRenderable(lampRenderable);
-            lamp.select();
-
-        }
-
-//        else if ( selected == 5)
-//        {
-//            TransformableNode lamp1 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
-//            lamp1.setParent(anchorNode);
-//            lamp1.setRenderable(lamp1Renderable);
-//            lamp1.select();
-//
-//        }
-
     }
 
-//    private void setClickListener() {
-//        for (int i=0;i<arrayView.length;i++){
-//            arrayView[i].setOnClickListener(this);
-//        }
-//    }
-//
-//    private void  setArrayView() {
-//        arrayView = new View[]{couch, modell, sofa_01};
-//    }
+    private void setClickListener() {
+        for (int i=0;i<arrayView.length;i++){
+            arrayView[i].setOnClickListener(this);
+        }
+   }
+
+
+  private void  setArrayView() {
+        arrayView = new View[]{couch, modell, sofa_01};
+  }
 
     @Override
     protected void onPause() {
@@ -294,6 +241,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+        if(v.getId()==R.id.couch){
+            Log.d("selected","one");
+            selected=1;
+
+        }
+        else if(v.getId()==R.id.set){
+            Log.d("selected","two");
+            selected=2;
+
+        }
+        else if(v.getId()==R.id.set1){
+            Log.d("selected","three");
+            selected=3;
+
+        }
 
 
 
