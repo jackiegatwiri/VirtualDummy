@@ -9,8 +9,11 @@ import android.media.CamcorderProfile;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -55,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int selected = 1; //default couch
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,21 +66,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         arFragment = (WritingArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment); //ARFRAGMENT HOLDS PERMISSION TO RUN ARCORE FEATURES
 
         setArrayView();
-       setClickListener();
+        setClickListener();
         setupModel();
-
-
 
 
         arFragment.setOnTapArPlaneListener(new BaseArFragment.OnTapArPlaneListener() {
             @Override
             public void onTapPlane(HitResult hitResult, Plane plane, MotionEvent motionEvent) {
 
-                    Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-                    createModel(anchorNode, selected);
-                }
+                Anchor anchor = hitResult.createAnchor();
+                AnchorNode anchorNode = new AnchorNode(anchor);
+                anchorNode.setParent(arFragment.getArSceneView().getScene());
+                createModel(anchorNode, selected);
+            }
         });
 
         // Initialize the VideoRecorder.
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recordButton.setOnClickListener(this::toggleRecording);
         recordButton.setEnabled(true);
         recordButton.setImageResource(R.drawable.baseline_videocam_white_24);
-        
 
 
     }
@@ -139,26 +138,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void createModel(AnchorNode anchorNode, int selected) {
-        if ( selected == 1){
+        if (selected == 1) {
 
             TransformableNode couch = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
             couch.setParent(anchorNode);
             couch.setRenderable(couchRenderable);
             couch.select();
 
-        }
-
-        else if ( selected == 2)
-        {
+        } else if (selected == 2) {
             TransformableNode sofa1 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
             sofa1.setParent(anchorNode);
             sofa1.setRenderable(setRenderable);
             sofa1.select();
 
-        }
-
-        else if ( selected == 3)
-        {
+        } else if (selected == 3) {
             TransformableNode sofa2 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
             sofa2.setParent(anchorNode);
             sofa2.setRenderable(set1Renderable);
@@ -169,15 +162,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setClickListener() {
-        for (int i=0;i<arrayView.length;i++){
+        for (int i = 0; i < arrayView.length; i++) {
             arrayView[i].setOnClickListener(this);
         }
-   }
+    }
 
 
-  private void  setArrayView() {
+    private void setArrayView() {
         arrayView = new View[]{couch, modell, sofa_01};
-  }
+    }
 
     @Override
     protected void onPause() {
@@ -242,24 +235,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        if(v.getId()==R.id.couch){
-            Log.d("selected","one");
-            selected=1;
+        if (v.getId() == R.id.couch) {
+            Log.d("selected", "one");
+            selected = 1;
+
+        } else if (v.getId() == R.id.set) {
+            Log.d("selected", "two");
+            selected = 2;
+
+        } else if (v.getId() == R.id.set1) {
+            Log.d("selected", "three");
+            selected = 3;
 
         }
-        else if(v.getId()==R.id.set){
-            Log.d("selected","two");
-            selected=2;
-
-        }
-        else if(v.getId()==R.id.set1){
-            Log.d("selected","three");
-            selected=3;
-
-        }
-
-
-
-
     }
-    }
+}

@@ -32,12 +32,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/email"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:text="jaciegatz@gmail.com"
-                android:hint="Email"
+                android:hint="email"
                 android:textColor="#fff"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,6 +75,7 @@
             android:layout_marginBottom="24dp"
             android:text="No account yet? Create one"
             android:gravity="center"
+            android:clickable="true"
             android:textSize="16dip"
             android:textColor="#fff"/>
 

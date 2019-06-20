@@ -49,6 +49,28 @@
                 android:layout_height="100dp"
                 android:clickable="true"
                 android:src="@drawable/modell" />
+            <ImageView
+                android:id="@+id/bed"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/bed"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/lamp1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/lamp"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/table"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/table"
+                android:paddingLeft="10dp"/>
+
 
             <ImageView
                 android:id="@+id/set"
@@ -56,6 +78,20 @@
                 android:layout_height="100dp"
                 android:clickable="true"
                 android:src="@drawable/sofa_01"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/bed1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/bedroom"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/lamp2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/lamp2"
                 android:paddingLeft="10dp"/>
 
             <ImageView
@@ -65,6 +101,27 @@
                 android:clickable="true"
                 android:src="@drawable/couch"
                 android:paddingLeft="10dp"/>
+
+            <ImageView
+                android:id="@+id/table1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/table1"
+                android:paddingLeft="10dp"/>
+
+            <ImageView
+                android:id="@+id/sof"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/sof"
+                android:paddingLeft="10dp"/>
+
+
+
+
+
 
 
         </LinearLayout>
