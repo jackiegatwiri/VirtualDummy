@@ -17,9 +17,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        mText = findViewById(R.id.text);
-        Typeface pacific = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
-        mText.setTypeface(pacific);
+
 
         new Handler().postDelayed(new Runnable() { //handler schedules messages and runnables to be executed at some point in the future 2. enques an action to be performed on diff threads than
             @Override

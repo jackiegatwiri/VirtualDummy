@@ -5,7 +5,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.jacky.virtualdummy"
-        minSdkVersion 24
+        minSdkVersion 28
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -48,13 +48,32 @@ dependencies {
 apply plugin: 'com.google.gms.google-services'
 
 
-sceneform.asset('sampledata/models/iron.obj',
-        'default',
-        'sampledata/models/iron.sfa',
-        'src/main/res/raw/iron')
 
 
-sceneform.asset('sampledata/models/scene.gltf',
+
+
+
+sceneform.asset('sampledata/models/set1/sofa_01.obj',
         'default',
-        'sampledata/models/scene.sfa',
-        'src/main/res/raw/scene')
+        'sampledata/models/set1/sofa_01.sfa',
+        'src/main/res/raw/sofa_01')
+
+sceneform.asset('sampledata/models/set2/couch.obj',
+        'default',
+        'sampledata/models/set2/couch.sfa',
+        'src/main/res/raw/couch')
+
+sceneform.asset('sampledata/models/set3/modell.obj',
+        'default',
+        'sampledata/models/set3/modell.sfa',
+        'src/main/res/raw/modell')
+
+sceneform.asset('sampledata/models/lamp1/lamppost.obj',
+        'default',
+        'sampledata/models/lamp1/lamppost.sfa',
+        'src/main/res/raw/lamppost')
+
+sceneform.asset('sampledata/models/lamp2/lamp.obj',
+        'default',
+        'sampledata/models/lamp2/lamp.sfa',
+        'src/main/res/raw/lamp')
