@@ -14,6 +14,10 @@
 
 
 
+
+
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/record"
         android:layout_width="82dp"
@@ -79,6 +83,15 @@
                 android:clickable="true"
                 android:src="@drawable/sofa_01"
                 android:paddingLeft="10dp"/>
+
+            <ImageView
+                android:id="@+id/counter"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/counter"
+                android:paddingLeft="10dp"/>
+
             <ImageView
                 android:id="@+id/bed1"
                 android:layout_width="100dp"

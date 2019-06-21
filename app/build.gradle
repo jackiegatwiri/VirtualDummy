@@ -79,3 +79,18 @@ sceneform.asset('sampledata/models/lamp2/lamp.obj',
         'default',
         'sampledata/models/lamp2/lamp.sfa',
         'src/main/res/raw/lamp')
+
+sceneform.asset('sampledata/models/bed/bedroom.obj',
+        'default',
+        'sampledata/models/bed/bedroom.sfa',
+        'src/main/res/raw/bedroom')
+
+sceneform.asset('sampledata/models/counter/model.obj',
+        'default',
+        'sampledata/models/counter/model.sfa',
+        'src/main/res/raw/model')
+
+sceneform.asset('sampledata/models/desk/desk.obj',
+        'default',
+        'sampledata/models/desk/desk.sfa',
+        'src/main/res/raw/desk')
