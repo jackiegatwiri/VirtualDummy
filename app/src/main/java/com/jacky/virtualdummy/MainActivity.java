@@ -20,12 +20,14 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
@@ -212,12 +214,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             couch.setParent(anchorNode);
             couch.setRenderable(couchRenderable);
             couch.select();
+            addname(anchorNode,couch,"x");
 
         } else if (selected == 2) {
             TransformableNode sofa1 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
             sofa1.setParent(anchorNode);
             sofa1.setRenderable(setRenderable);
             sofa1.select();
+            addname(anchorNode,sofa1,"x");
 
         }
         else if (selected == 3) {
@@ -225,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sofa2.setParent(anchorNode);
             sofa2.setRenderable(set1Renderable);
             sofa2.select();
+            addname(anchorNode,sofa2,"x");
 
         }
         else if (selected == 4) {
@@ -232,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             lamp.setParent(anchorNode);
             lamp.setRenderable(lampRenderable);
             lamp.select();
+            addname(anchorNode,lamp,"x");
 
         }
         else if (selected == 5) {
@@ -239,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             lamp1.setParent(anchorNode);
             lamp1.setRenderable(lamp1Renderable);
             lamp1.select();
+            addname(anchorNode,lamp1,"x");
 
         }
         else if (selected == 6) {
@@ -246,6 +253,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             bed.setParent(anchorNode);
             bed.setRenderable(bedRenderable);
             bed.select();
+            addname(anchorNode,bed,"x");
 
         }
         else if (selected == 7) {
@@ -253,6 +261,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             counter.setParent(anchorNode);
             counter.setRenderable(counterRenderable);
             counter.select();
+            addname(anchorNode,counter,"x");
 
         }
         else if (selected == 8) {
@@ -260,6 +269,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             table.setParent(anchorNode);
             table.setRenderable(tableRenderable);
             table.select();
+            addname(anchorNode,table,"x");
 
         }
 
@@ -343,40 +353,90 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.couch) {
             Log.d("selected", "one");
             selected = 1;
+            setBackground(v.getId());
 
         } else if (v.getId() == R.id.set) {
             Log.d("selected", "two");
             selected = 2;
+            setBackground(v.getId());
 
         } else if (v.getId() == R.id.set1) {
             Log.d("selected", "three");
             selected = 3;
+            setBackground(v.getId());
 
         }
         else if (v.getId() == R.id.lamp1) {
             Log.d("selected", "three");
             selected = 4;
+            setBackground(v.getId());
 
         }
         else if (v.getId() == R.id.lamp2) {
             Log.d("selected", "three");
             selected = 5;
+            setBackground(v.getId());
 
         }
         else if (v.getId() == R.id.bed) {
             Log.d("selected", "three");
             selected = 6;
+            setBackground(v.getId());
 
         }
         else if (v.getId() == R.id.counter) {
             Log.d("selected", "three");
             selected = 7;
+            setBackground(v.getId());
 
         }
         else if (v.getId() == R.id.table) {
             Log.d("selected", "three");
             selected = 8;
+            setBackground(v.getId());
 
         }
+    }
+
+    private void addname(AnchorNode anchorNode, TransformableNode model, String name) {
+
+
+        ViewRenderable.builder()
+                .setView(this,R.layout.name_furniture)
+                .build()
+                .thenAccept(viewRenderable -> {
+
+                    TransformableNode nameView=new TransformableNode(arFragment.getTransformationSystem());
+                    nameView.setLocalPosition(new Vector3(0f,model.getLocalPosition().y+1.0f,0));
+                    nameView.setParent(anchorNode);
+                    nameView.setRenderable(viewRenderable);
+                    nameView.select();
+
+                    TextView txt_name=(TextView)viewRenderable.getView();
+                    txt_name.setText(name);
+
+                    txt_name.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            anchorNode.setParent(null);
+
+                        }
+
+                    });
+
+                });
+
+    }
+
+    private void setBackground(int id) {
+        for (int i=0;i<arrayView.length;i++){
+
+            if(arrayView[i].getId()==id)
+                arrayView[i].setBackgroundColor(Color.parseColor("#999999"));
+            else
+                arrayView[i].setBackgroundColor(Color.TRANSPARENT);
+        }
+
     }
 }
