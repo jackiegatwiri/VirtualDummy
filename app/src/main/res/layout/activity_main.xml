@@ -33,6 +33,19 @@
         app:elevation="1dp"
         app:srcCompat="@drawable/baseline_videocam_white_24" />
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-65dp"
+        android:layout_marginBottom="250dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginLeft="190dp"
+        android:foregroundGravity="center"
+        app:backgroundTint="@color/colorPrimary"
+        app:elevation="1dp"
+        app:srcCompat="@drawable/baseline_insert_photo_white_24" />
 
     <HorizontalScrollView
         android:id="@+id/scroll"
@@ -53,6 +66,58 @@
                 android:layout_height="100dp"
                 android:clickable="true"
                 android:src="@drawable/modell" />
+
+
+            <ImageView
+                android:id="@+id/sofa5"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/sofa5"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/sofa6"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/white"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/sofa7"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/sofa7"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/sofa8"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/sofa8"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/sofa4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/red3"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/set"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/red"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/coffee"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/coffee"
+                android:paddingLeft="10dp"/>
+
             <ImageView
                 android:id="@+id/bed"
                 android:layout_width="100dp"
@@ -60,6 +125,7 @@
                 android:clickable="true"
                 android:src="@drawable/bed"
                 android:paddingLeft="10dp"/>
+
             <ImageView
                 android:id="@+id/lamp1"
                 android:layout_width="100dp"
@@ -67,22 +133,9 @@
                 android:clickable="true"
                 android:src="@drawable/lamp"
                 android:paddingLeft="10dp"/>
-            <ImageView
-                android:id="@+id/table"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:clickable="true"
-                android:src="@drawable/table"
-                android:paddingLeft="10dp"/>
 
 
-            <ImageView
-                android:id="@+id/set"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:clickable="true"
-                android:src="@drawable/sofa_01"
-                android:paddingLeft="10dp"/>
+
 
             <ImageView
                 android:id="@+id/counter"
@@ -129,6 +182,13 @@
                 android:layout_height="100dp"
                 android:clickable="true"
                 android:src="@drawable/sof"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/red3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/sofa4"
                 android:paddingLeft="10dp"/>
 
 

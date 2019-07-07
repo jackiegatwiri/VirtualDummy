@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.CamcorderProfile;
 import android.net.Uri;
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final double MIN_OPENGL_VERSION = 3.0; //using emulator
 
     private WritingArFragment arFragment;
-    private ModelRenderable couchRenderable, setRenderable, set1Renderable, lampRenderable, lamp1Renderable, bedRenderable, counterRenderable, tableRenderable ;
+    private ModelRenderable couchRenderable, setRenderable, set1Renderable, lampRenderable, lamp1Renderable, bedRenderable, counterRenderable, tableRenderable,
+    soaf3Renderable, sofa4Renderable, sofa5Renderable, sofa6Renderable, sofa7Renderable, sofa8Renderable, coffeeRenderable;
     private ModelLoader modelLoader; //avoid leaking the activity's context
     private VideoRecorder videoRecorder; // enables videos to be recorded. Gives functionality
     private FloatingActionButton recordButton; //UI
@@ -63,8 +65,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView bed;
     @BindView(R.id.counter)
     ImageView counter;
-    @BindView(R.id.table)
-    ImageView table;
+    @BindView(R.id.coffee)
+    ImageView coffee;
+    @BindView(R.id.red3)
+    ImageView sofa3;
+    @BindView(R.id.sofa4)
+    ImageView sofa4;
+    @BindView(R.id.sofa5)
+    ImageView sofa5;
+    @BindView(R.id.sofa6)
+    ImageView sofa6;
+    @BindView(R.id.sofa7)
+    ImageView sofa7;
+    @BindView(R.id.sofa8)
+    ImageView sofa8;
+    @BindView(R.id.image)
+    ImageView image;
 
 
     View arrayView[];
@@ -81,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setArrayView();
         setClickListener();
         setupModel();
+
+        image.setOnClickListener(this);
 
 
         arFragment.setOnTapArPlaneListener(new BaseArFragment.OnTapArPlaneListener() {
@@ -135,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
 
         ModelRenderable.builder()
-                .setSource(this, R.raw.sofa_01)
+                .setSource(this, R.raw.armchair_01)
                 .build()
                 .thenAccept(renderable -> setRenderable = renderable)
                 .exceptionally(throwable -> {
@@ -167,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     toast.show();
                     return null;
                 });
+
         ModelRenderable.builder()
                 .setSource(this, R.raw.bedroom)
                 .build()
@@ -194,6 +213,84 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setSource(this, R.raw.desk)
                 .build()
                 .thenAccept(renderable -> tableRenderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+        ModelRenderable.builder()
+                .setSource(this, R.raw.soaf3)
+                .build()
+                .thenAccept(renderable -> soaf3Renderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+        ModelRenderable.builder()
+                .setSource(this, R.raw.sofa4)
+                .build()
+                .thenAccept(renderable -> sofa4Renderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+
+        ModelRenderable.builder()
+                .setSource(this, R.raw.sofa5)
+                .build()
+                .thenAccept(renderable -> sofa5Renderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+        ModelRenderable.builder()
+                .setSource(this, R.raw.sofa6)
+                .build()
+                .thenAccept(renderable -> sofa6Renderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+        ModelRenderable.builder()
+                .setSource(this, R.raw.sofa7)
+                .build()
+                .thenAccept(renderable -> sofa7Renderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+        ModelRenderable.builder()
+                .setSource(this, R.raw.coffee)
+                .build()
+                .thenAccept(renderable -> coffeeRenderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast toast =
+                            Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return null;
+                });
+        ModelRenderable.builder()
+                .setSource(this, R.raw.sofa8)
+                .build()
+                .thenAccept(renderable -> sofa8Renderable = renderable)
                 .exceptionally(throwable -> {
                     Toast toast =
                             Toast.makeText(this, "Unable to load sofa renderable", Toast.LENGTH_SHORT);
@@ -267,11 +364,65 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (selected == 8) {
             TransformableNode table = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
             table.setParent(anchorNode);
-            table.setRenderable(tableRenderable);
+            table.setRenderable(coffeeRenderable);
             table.select();
-            addname(anchorNode,table,"x");
+            addname(anchorNode, table,"x");
 
         }
+
+
+        else if (selected == 9) {
+            TransformableNode sofa3 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
+            sofa3.setParent(anchorNode);
+            sofa3.setRenderable(soaf3Renderable);
+            sofa3.select();
+            addname(anchorNode, sofa3,"x");
+
+        }
+        else if (selected == 10) {
+            TransformableNode sofa4 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
+            sofa4.setParent(anchorNode);
+            sofa4.setRenderable(sofa4Renderable);
+            sofa4.select();
+            addname(anchorNode, sofa4,"x");
+
+        }
+        else if (selected == 11) {
+            TransformableNode sofa5 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
+            sofa5.setParent(anchorNode);
+            sofa5.setRenderable(sofa5Renderable);
+            sofa5.select();
+            addname(anchorNode, sofa5,"x");
+
+        }
+        else if (selected == 12) {
+            TransformableNode sofa6 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
+            sofa6.setParent(anchorNode);
+            sofa6.setRenderable(sofa6Renderable);
+            sofa6.select();
+            addname(anchorNode, sofa6,"x");
+
+        }
+        else if (selected == 13) {
+            TransformableNode sofa7 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
+            sofa7 .setParent(anchorNode);
+            sofa7 .setRenderable(sofa7Renderable);
+            sofa7 .select();
+            addname(anchorNode, sofa7 ,"x");
+
+
+        }
+
+        else if (selected == 14) {
+            TransformableNode sofa8 = new TransformableNode(arFragment.getTransformationSystem()); //MAKES MODEL TO ROTATE AND MOVE
+            sofa8 .setParent(anchorNode);
+            sofa8  .setRenderable( sofa8Renderable);
+            sofa8  .select();
+            addname(anchorNode,  sofa8  ,"x");
+
+
+        }
+
 
 
     }
@@ -284,7 +435,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void setArrayView() {
-        arrayView = new View[]{couch, modell, sofa_01, lamp1, lamp2, bed, counter, table};
+        arrayView = new View[]{couch, modell, sofa_01, lamp1, lamp2, bed, counter, coffee, sofa3, sofa4, sofa5, sofa6, sofa7, sofa8};
     }
 
     @Override
@@ -390,10 +541,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setBackground(v.getId());
 
         }
-        else if (v.getId() == R.id.table) {
+        else if (v.getId() == R.id.coffee) {
             Log.d("selected", "three");
             selected = 8;
             setBackground(v.getId());
+
+        }
+        else if (v.getId() == R.id.red3) {
+            Log.d("selected", "three");
+            selected = 9;
+            setBackground(v.getId());
+
+        }
+        else if (v.getId() == R.id.sofa4) {
+            Log.d("selected", "three");
+            selected = 10;
+            setBackground(v.getId());
+
+        }
+        else if (v.getId() == R.id.sofa5) {
+            Log.d("selected", "three");
+            selected = 11;
+            setBackground(v.getId());
+
+        }
+        else if (v.getId() == R.id.sofa6) {
+            Log.d("selected", "three");
+            selected = 12;
+            setBackground(v.getId());
+
+        }
+        else if (v.getId() == R.id.sofa7) {
+            Log.d("selected", "three");
+            selected = 13;
+            setBackground(v.getId());
+
+        }
+        else if (v.getId() == R.id.sofa8) {
+            Log.d("selected", "three");
+            selected = 14;
+            setBackground(v.getId());
+
+        }
+        if (v == image){
+            Intent intent = new Intent();
+            intent.setAction(android.content.Intent.ACTION_VIEW);
+            intent.setType("image/*");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
 
         }
     }
@@ -439,4 +634,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+
 }

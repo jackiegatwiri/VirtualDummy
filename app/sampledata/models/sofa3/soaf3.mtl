@@ -1,0 +1,9 @@
+# File produced by AccuTrans 3D
+
+newmtl Courthouse
+  Ns 102.6
+  d 1.0
+  illum 2
+  Kd 1.0 1.0 1.0
+  Ka 1.0 1.0 1.0
+  Ks 0.898 0.898 0.898

@@ -1,0 +1,27 @@
+# File produced by AccuTrans 3D
+
+newmtl Dynasty_Ch
+  Ns 77.2
+  d 1.0
+  illum 2
+  Kd 0.6863 0.1608 0.1608
+  Ka 0.6863 0.1608 0.1608
+  Ks 0.898 0.898 0.898
+
+newmtl Dynasty_Ch_1
+  Ns 28.94
+  d 1.0
+  illum 2
+  Kd 0.1294 0.1333 0.1098
+  Ka 0.1294 0.1333 0.1098
+  Ks 0.898 0.898 0.898
+  map_Kd E:\TORTOI~1.jpg
+
+newmtl Dynasty_Ch_2
+  Ns 77.2
+  d 1.0
+  illum 2
+  Kd 0.9255 0.9333 0.8941
+  Ka 0.9255 0.9333 0.8941
+  Ks 0.898 0.898 0.898
+  map_Kd E:\WHITEM~1.jpg

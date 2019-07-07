@@ -94,3 +94,48 @@ sceneform.asset('sampledata/models/desk/desk.obj',
         'default',
         'sampledata/models/desk/desk.sfa',
         'src/main/res/raw/desk')
+
+sceneform.asset('sampledata/models/sofa3/soaf3.obj',
+        'default',
+        'sampledata/models/sofa3/soaf3.sfa',
+        'src/main/res/raw/soaf3')
+
+sceneform.asset('sampledata/models/sofa4/sofa4.obj',
+        'default',
+        'sampledata/models/sofa4/sofa4.sfa',
+        'src/main/res/raw/sofa4')
+
+sceneform.asset('sampledata/models/sofa5/sofa5.obj',
+        'default',
+        'sampledata/models/sofa5/sofa5.sfa',
+        'src/main/res/raw/sofa5')
+
+sceneform.asset('sampledata/models/sofa6/sofa6.obj',
+        'default',
+        'sampledata/models/sofa6/sofa6.sfa',
+        'src/main/res/raw/sofa6')
+
+sceneform.asset('sampledata/models/sofa7/sofa7.obj',
+        'default',
+        'sampledata/models/sofa7/sofa7.sfa',
+        'src/main/res/raw/sofa7')
+
+sceneform.asset('sampledata/models/sofa8/sofa8.obj',
+        'default',
+        'sampledata/models/sofa8/sofa8.sfa',
+        'src/main/res/raw/sofa8')
+
+
+
+
+
+
+sceneform.asset('sampledata/models/cofy/coffee.obj',
+        'default',
+        'sampledata/models/cofy/coffee.sfa',
+        'src/main/res/raw/coffee')
+
+sceneform.asset('sampledata/models/chair1/armchair_01.obj',
+        'default',
+        'sampledata/models/chair1/armchair_01.sfa',
+        'src/main/res/raw/armchair_01')
